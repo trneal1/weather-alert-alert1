@@ -4,7 +4,7 @@
 
 #include <EEPROM.h>
 
-#include <Wifi.h>
+#include <WiFi.h>
 #include <NTPClient.h>
 #include <ArduinoOTA.h>
 
@@ -14,7 +14,7 @@
 
 #include <HTTPClient.h>
 #define ARDUINOJSON_COMMENTS_ENABLE 1
-#include <ArduinoJSON.h>
+#include <ArduinoJson.h>
 
 #include <Wire.h>
 #include <Adafruit_GFX.h>
@@ -62,7 +62,7 @@ using SpiRamJsonDocument = BasicJsonDocument<SpiRamAllocator>;
 WROVER_KIT_LCD tft;
 
 WiFiUDP ntpUDP;
-NTPClient timeClient(ntpUDP, "pool.ntp.org", -5 * 3600);
+NTPClient timeClient(ntpUDP, "pool.ntp.org", -4 * 3600);
 
 // Create AsyncWebServer object on port 80
 AsyncWebServer server(80);
@@ -77,9 +77,9 @@ char *desc;
 #include <Adafruit_NeoPixel.h>
 #include <ArduinoOTA.h>
 #include <TaskScheduler.h>
-#include <WiFiUDP.h>
+#include <WiFiUdp.h>
 #include <string.h>
-#include <arduino.h>
+#include <Arduino.h>
 
 #define ledpin 13
 #define numtasks 8
