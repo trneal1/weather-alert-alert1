@@ -606,7 +606,7 @@ void task1(void *parameter)
             {
                udp.beginPacket("192.168.1.2", 4100);
                udp.print(localnum);
-               udp.print(" 10000 8x");
+               udp.print(" 10000 12x");
                udp.print(localcode);
                udp.print(" 0x000000\n");
                udp.endPacket();
