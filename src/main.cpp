@@ -1,3 +1,4 @@
+#define Num_Areas 7
 #include <Arduino.h>
 
 #include <sntp.h>
@@ -35,8 +36,8 @@ const char *hostname = "ESP_WALERT";
 
 WiFiUDP udp;
 
-const char areas[100] = "NCC183/NCC063/NCC069/SCZ056/MDC027";   // MDC027
-const char *codes[] = {"NC W", "NC D", "NC F", "SC G", "MD H"}; // MD H
+const char areas[100] = "NCC183/NCC063/NCC069/SCZ056/MDC027/NYZ072/PAZ065";   // MDC027
+const char *codes[] = {"NC W", "NC D", "NC F", "SC G", "MD H", "NY M","PA Y"}; // MD H
 
 unsigned long connects = 0;
 unsigned long badhttp = 0;
@@ -44,7 +45,7 @@ unsigned long badhttp = 0;
 byte reboots;
 byte restarts;
 
-long int times1[5][3];
+long int times1[Num_Areas][3];
 
 struct SpiRamAllocator
 {
@@ -62,13 +63,13 @@ using SpiRamJsonDocument = BasicJsonDocument<SpiRamAllocator>;
 WROVER_KIT_LCD tft;
 
 WiFiUDP ntpUDP;
-NTPClient timeClient(ntpUDP, "pool.ntp.org", -4 * 3600);
+NTPClient timeClient(ntpUDP, "pool.ntp.org", -5 * 3600);
 
 // Create AsyncWebServer object on port 80
 AsyncWebServer server(80);
 // WebServer server(80);
 
-char *content[5];
+char *content[Num_Areas];
 char *desc;
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -348,7 +349,7 @@ void setup(void)
 {
 
    // content = (char **)ps_calloc(5, sizeof(char *));
-   for (int i = 0; i <= 4; i++)
+   for (int i = 0; i <= Num_Areas-1; i++)
    {
       content[i] = (char *)ps_calloc(100000, sizeof(char));
    }
@@ -398,7 +399,7 @@ void setup(void)
           response->printf("Restarts: %d\r\r",restarts);
           response->println("\t\tsize\tload\tproc\r");
 
-          for (int i=0;i<=4;i++)
+          for (int i=0;i<=Num_Areas-1;i++)
              response->printf("Area[%d]:\t%ld\t%lu\t%lu\r", i, strlen(content[i]), (times1[i][1]-times1[i][0]),(times1[i][2]-times1[i][1]));
 
 response->println();
