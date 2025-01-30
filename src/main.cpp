@@ -32,7 +32,7 @@ xTaskHandle htask1, htask2;
 
 const char *ssid = "TRNNET-2G";
 const char *password = "ripcord1";
-const char *hostname = "ESP_WALERT";
+const char *hostname = "ESP-WALERT";
 
 WiFiUDP udp;
 
@@ -262,7 +262,7 @@ void connect()
    WiFi.mode(WIFI_STA);
    WiFi.setSleep(false);
 
-   WiFi.hostname(hostname);
+   //WiFi.setHostname(hostname);
    WiFi.disconnect();
    WiFi.begin(ssid, password);
    while (WiFi.status() != WL_CONNECTED)
