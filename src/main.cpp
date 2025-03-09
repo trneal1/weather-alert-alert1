@@ -63,7 +63,7 @@ using SpiRamJsonDocument = BasicJsonDocument<SpiRamAllocator>;
 WROVER_KIT_LCD tft;
 
 WiFiUDP ntpUDP;
-NTPClient timeClient(ntpUDP, "pool.ntp.org", -5 * 3600);
+NTPClient timeClient(ntpUDP, "pool.ntp.org", -4 * 3600);
 
 // Create AsyncWebServer object on port 80
 AsyncWebServer server(80);
